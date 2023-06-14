@@ -16,14 +16,14 @@ class QuestionActivity : AppCompatActivity() {
 
     private var Name:String?=null
     private var score:Int=0
-
+    private var buttonClicked = false
     private var currentPosition:Int=1
     private var questionList:ArrayList<QuestionData> ? = null
     private var selecedOption:Int=0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_question)
-
+        submit.text="Submit"
         Name=intent.getStringExtra(setData.name)
 
         questionList=setData.getQuestion()
@@ -58,10 +58,12 @@ class QuestionActivity : AppCompatActivity() {
                     score++;
                 }
                 setColor(question.correct_ans,R.drawable.correct_question_option)
-                if(currentPosition==questionList!!.size)
-                    submit.text="FINISH"
-                else
-                    submit.text="Go to Next"
+                if (currentPosition == questionList!!.size) {
+                    submit.text = "FINISH"
+                } else {
+                    submit.text = "Go to Next"
+
+                }
             }else{
                 currentPosition++
                 when{
